@@ -28,10 +28,9 @@ Build the terminal:
 cd util/term
 make
 ```
-___
 
 ### The Linux Kernel
-Install the ARM GCC cross compiler version 4.8:
+Install the ARM GCC cross-compiler version 4.8:
 ```
 sudo apt-get install gcc-4.8-arm-linux-gnueabihf
 ```
@@ -63,11 +62,11 @@ Open another terminal window and run the command below. 'm5term' connects to the
 ```
 The port number is printed on the screen by gem5 when it starts running. It is usually 3456.
 
-After the boot procedure finishes and the system asks for the password, type 'root' and press enter. Then, enter the command below to enable DM-aware PALLOC:
+When the boot procedure is finished and the system asks for the password, type 'root' and press enter. Then, enter the command below to enable DM-aware PALLOC:
 ```
 ./palloc-gen-bal.sh
 ```
-The script assigns different bins to each Cgroups' partition and the result is printed on the screen. After the script finishes and the prompt is shown, go back to the terminal where gem5 is running and press Ctrl-C. This will save a checkpoint in the 'm5out' directory.
+The script assigns different bins to each Cgroups' partition and the result is printed on the screen. After the script is finished and the prompt is shown, go back to the terminal where gem5 is running and press Ctrl-C. This will save a checkpoint in the 'm5out' directory.
 
 ### Batch Run
 
