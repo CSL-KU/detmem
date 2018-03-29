@@ -1,66 +1,73 @@
 # Deterministic Memory
 Linux Kernel and gem5 modified source for Deterministic Memory
 
-## Preparing the Environment
-### Gem5
-**Install the required tools:**
+## Clone the Repository
 ```
-sudo apt-get update; sudo apt-get upgrade
+git clone https://github.com/CSL-KU/detmem
+cd detmem
+git submodule update --init
+```
+
+## Prepare the Environment
+### Gem5
+Install the required tools on Ubuntu:
+```
+sudo apt-get update
 sudo apt-get install mercurial scons swig gcc m4 python python-dev libgoogle-perftools-dev g++
 ```
-**Build command**
+
+Build command:
 ```
 cd gem5
-scons build/ARM/gem5.opt -j48
+scons build/ARM/gem5.opt -jN
+```
+N is the number of hardware threads available on your computer.
+
+Build the terminal:
+```
+cd util/term
+make
 ```
 ___
 
 ### The Linux Kernel
-**Install the GCC cross compiler**
+Install the ARM GCC cross compiler version 4.8:
 ```
-sudo apt-get install  gcc-arm-linux-gnueabihf gcc-aarch64-linux-gnu
+sudo apt-get install gcc-4.8-arm-linux-gnueabihf
 ```
-**Build the kernel**
+If the installation did not create the link to 'arm-linux-gnueabihf-gcc-4.8', you should do it by yourself:
 ```
-cd linux-kernel
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- vexpress_gem5_server_defconfig
-make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf-
+cd /usr/bin
+sudo ln arm-linux-gnueabihf-gcc-4.8 arm-linux-gnueabihf-gcc
+```
+
+Build the kernel:
+```
+cd gem5-linux
+make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -jN
 ```
 ___
-
-### Get the File System
-```
-mkdir full_system_images
-cd full_system_images
-wget http://www.m5sim.org/dist/current/arm/arm-system-2013-07.tar.bz2
-tar -xjf  arm-system-2013-07.tar.bz2
-```
-The EEMBC and SD-VBS benchmarks must be compiled and the binaries must be copied to the file system.
-___
-
-### Benchmarks
-Links to get EEMBC AutoBench and SD-VBS:
-[EEMBC AutoBench](http://www.eembc.org/benchmark/automotive_sl.php)
- and 
-[SD-VBS](http://parallel.ucsd.edu/vision)
-
 
 ## Running the Simulations
-### Boot the OS and Make a Checkpoint
+### Boot the OS and Create a Checkpoint
 
-In order to run the benchmarks, first, the OS must be booted on the gem5. We use the "atomic" CPU model for this purpose since it runs much faster. This model is not indented to measure timing but since we do not care about timing while booting Linux, it is acceptable to use this model. 
+Use the command below to run gem5 and boot Linux:
 
 ```
-./build/ARM/gem5.opt -d m5out configs/example/fs.py --disk-image=[path to file sysytem image/linux-arm-ael.img] --num-cpus=4 --caches --l2cache --mem-size=512MB --kernel=[path to the kernel/vmlinux] --machine-type=VExpress_EMM --dtb-file=[path to the gem5 directory/gem5/gem5-linux/arch/arm/boot/dts/vexpress-v2p-ca15-tc1-gem5_4cpus.dtb] --mem-type=lpddr2_s4_1066_x32 --checkpoint-at-end
+./build/ARM/gem5.opt -d m5out configs/example/fs.py --disk-image=[absolute/path/to/full_system_images/disks/linux-arm-ael.img] --num-cpus=4 --caches --l2cache --mem-size=512MB --kernel=[absolute/path/to/gem5-linux/vmlinux] --machine-type=VExpress_EMM --dtb-file=[absolute/path/to/gem5-linux/arch/arm/boot/dts/vexpress-v2p-ca15-tc1-gem5_4cpus.dtb] --mem-type=lpddr2_s4_1066_x32 --checkpoint-at-end
 ```
 
-To attach the terminal and see the kernel output, this command must be run under the gem5 directory.
+Open another terminal window and run the command below. 'm5term' connects to the gem5 and serves as a console for the simulated system. 
 ```
 ./util/term/m5term [port number]
 ```
 The port number is printed on the screen by gem5 when it starts running. It is usually 3456.
 
-At the end of the boot, it asks for the password. The password is "root". After acknowledging it, the command prompt is shown. Then, we go back to gem5 and press Ctrl-C. This ends the simulation and creates a checkpoint in "m5out" directory.
+After the boot procedure finishes and the system asks for the password, type 'root' and press enter. Then, enter the command below to enable DM-aware PALLOC:
+```
+./palloc-gen-bal.sh
+```
+The script assigns different bins to each Cgroups' partition and the result is printed on the screen. After the script finishes and the prompt is shown, go back to the terminal where gem5 is running and press Ctrl-C. This will save a checkpoint in the 'm5out' directory.
 
 ### Batch Run
 
