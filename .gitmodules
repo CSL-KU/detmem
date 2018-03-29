@@ -1,0 +1,9 @@
+[submodule "gem5"]
+	path = gem5
+	url = https://github.com/CSL-KU/gem5.git
+[submodule "gem5-linux"]
+	path = gem5-linux
+	url = https://github.com/CSL-KU/gem5-linux.git
+[submodule "full_system_images"]
+	path = full_system_images
+	url = https://bitbucket.org/farzadfch/full_system_images.git
