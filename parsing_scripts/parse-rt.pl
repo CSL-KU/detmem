@@ -86,14 +86,6 @@ foreach my $config (@configs) {
     }
 }
 
-# foreach my $config (@configs) {
-#     foreach my $bench (@bench_names) {
-#         my $bench_ref = $all_benches{$config}{$bench};
-#         printf "%s: %f, %d, %d, %d, %d\n", $bench_ref->{stat_file}, $bench_ref->{sim_seconds}, $bench_ref->{inst_hit}, $bench_ref->{data_hit}, $bench_ref->{inst_miss}, $bench_ref->{data_miss};
-#     }
-# }
-
-
 # compute and write to the CSV files
 my $hit_rate_path = $out_dir.'/hit-rate.csv';
 open(my $hit_rate_handle, ">", $hit_rate_path) or die "Can't open > $hit_rate_path: $!";
@@ -116,8 +108,6 @@ foreach my $config (@configs) {
     $average{$config}{dm_util} = 0;
 }
 
-# printf "benchmark\t\t\t\t\thits   accesses\n";
-
 foreach my $bench (@bench_names) {
     foreach my $config (@configs) {
         if ($config ne 'solo') {
@@ -132,8 +122,6 @@ foreach my $bench (@bench_names) {
             $average{$config}{hit_rate} = $average{$config}{hit_rate} + $bench_hit_rate;
             
             printf $hit_rate_handle "%s,%s,%.3f\n", $bench, $config, $bench_hit_rate;
- 
-            # printf "%-47s %-6d %-6d %.2f\n", $bench_ref->{stat_file}, $bench_hit, $bench_miss + $bench_hit, $bench_hit_rate;
  
             # slowdown
             my $bench_solo_sim_sec = $all_benches{solo}{$bench}{sim_seconds};

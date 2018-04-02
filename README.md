@@ -53,7 +53,7 @@ ___
 Use the command below to run gem5 and boot Linux:
 
 ```
-./build/ARM/gem5.opt -d m5out configs/example/fs.py --disk-image=[absolute/path/to/full_system_images/disks/linux-arm-ael.img] --num-cpus=4 --caches --l2cache --mem-size=512MB --kernel=[absolute/path/to/gem5-linux/vmlinux] --machine-type=VExpress_EMM --dtb-file=[absolute/path/to/gem5-linux/arch/arm/boot/dts/vexpress-v2p-ca15-tc1-gem5_4cpus.dtb] --mem-type=lpddr2_s4_1066_x32 --checkpoint-at-end
+./build/ARM/gem5.opt -d m5out configs/example/fs.py --disk-image=[absolute/path/to/full_system_images/disks/linux-arm-ael.img] --num-cpus=4 --caches --l2cache --mem-size=2048MB --kernel=[absolute/path/to/gem5-linux/vmlinux] --machine-type=VExpress_EMM --dtb-file=[absolute/path/to/gem5-linux/arch/arm/boot/dts/vexpress-v2p-ca15-tc1-gem5_4cpus.dtb] --mem-type=lpddr2_s4_1066_x32 --checkpoint-at-end
 ```
 
 Open another terminal window and run the command below. 'm5term' connects to the gem5 and serves as a console for the simulated system. 
