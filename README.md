@@ -70,7 +70,7 @@ The script assigns different bins to each Cgroups' partition, and the result is 
 
 ### Running the Simulations
 
-Use the following command to run the simulations in Figure 8:
+Use the following commands to run the simulations in Figure 8:
 ```
 cd gem5
 ./run-fig8-rt-effect.sh m5out/cpt.*
@@ -93,12 +93,11 @@ Install R on your system:
 ```
 sudo apt-get install r-base r-cran-ggplot2
 ```
- After all of the runs are finished, use this command to generate the figures:
+ After simulations for Figure 8 are finished, execute the commands below to generate the figure:
  ```
  cd parsing_scripts
- ./gen-fig-all
+ ./gen-fig8
  ```
 The figures will be saved in 'detmem/results/figs'.
  
-Alternatively, you can generate the figures for each run separately by executing the scripts 'gen-fig8.sh', 'gen-fig9.sh', or 'gen-fig10a.sh'.
- 
+Use 'gen-fig9.sh' and 'gen-fig10a.sh' to genrate figures 9 and 10a.
