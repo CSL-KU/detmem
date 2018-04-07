@@ -75,7 +75,7 @@ Use the following command to run the simulations in Figure 8:
 cd gem5
 ./run-fig8-rt-effect.sh m5out/cpt.*
 ```
-This script launches 48 simulations in parallel and saves the result in 'detmem/results/fig8-rt-effect'. It takes about 12 hours to finish this run on a machine with 48 hardware threads. Each gem5 instance needs about 250MB memory. As we launch 48 threads, this run needs about 12GB memory. 
+This script launches 48 simulations in parallel and saves the result in 'detmem/results/fig8-rt-effect'. It takes about 12 hours to finish this run on a machine with 48 hardware threads. Each gem5 instance needs about 250MB memory. As we launch 48 threads, this run takes about 12GB memory. 
 
 To run the simulations in figures 9 and 10.a, use the the following commands:
 ```
