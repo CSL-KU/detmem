@@ -91,7 +91,7 @@ ___
 
 Install R on your system:
 ```
-sudo apt-get install r-base
+sudo apt-get install r-base r-cran-ggplot2
 ```
  After all of the runs are finished, use this command to generate the figures:
  ```
