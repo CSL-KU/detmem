@@ -3,8 +3,8 @@
 library(ggplot2)
 library(scales)
 
-hitrate_cr_1bzip2 <- read.csv("../results/be-effect/csv/hit-rate-cr-1bzip2.csv")
-cache_occ_1bzip2 <- read.csv("../results/be-effect/csv/cache-occ-1bzip2.csv")
+hitrate_cr_1bzip2 <- read.csv("../results/fig9-be-effect/csv/hit-rate-cr-1bzip2.csv")
+cache_occ_1bzip2 <- read.csv("../results/fig9-be-effect/csv/cache-occ-1bzip2.csv")
 
 hitrate_cr_1bzip2$co.runners <- factor(hitrate_cr_1bzip2$co.runners,as.character(hitrate_cr_1bzip2$co.runners))
 hitrate_cr_1bzip2$Benchmark <- factor(hitrate_cr_1bzip2$Benchmark,as.character(hitrate_cr_1bzip2$Benchmark))

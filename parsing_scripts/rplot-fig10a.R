@@ -3,7 +3,7 @@
 library(ggplot2)
 library(scales)
 
-slowdown_mc <- read.csv("../results/dram-ctrl/csv/slowdown-mc.csv")
+slowdown_mc <- read.csv("../results/fig10a-dram-ctrl/csv/slowdown-mc.csv")
 
 slowdown_mc$co.runners <- factor(slowdown_mc$co.runners,as.character(slowdown_mc$co.runners))
 slowdown_mc$Benchmark <- factor(slowdown_mc$Benchmark,as.character(slowdown_mc$Benchmark))

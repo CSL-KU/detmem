@@ -3,8 +3,8 @@
 library(ggplot2)
 library(scales)
 
-hitrate <- read.csv("../results/rt-effect/csv/hit-rate.csv")
-dmutil <- read.csv("../results/rt-effect/csv/dm-util.csv")
+hitrate <- read.csv("../results/fig8-rt-effect/csv/hit-rate.csv")
+dmutil <- read.csv("../results/fig8-rt-effect/csv/dm-util.csv")
 
 hitrate$co.runners <- factor(hitrate$co.runners,as.character(hitrate$co.runners))
 hitrate$Benchmark <- factor(hitrate$Benchmark,as.character(hitrate$Benchmark))
