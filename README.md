@@ -62,11 +62,11 @@ Open another terminal window and run the command below. 'm5term' connects to gem
 ```
 The port number is printed on the screen where gem5 is running. It is usually 3456.
 
-When the boot procedure is finished and the system asks for the password, type 'root' and press enter. Then, enter the command below to enable PALLOC:
+When the boot procedure is complete, and the system asks for the password, type 'root' and press enter. Then, enter the command below to enable PALLOC:
 ```
 ./palloc-gen-bal.sh
 ```
-The script assigns different bins to each Cgroups' partition, and the result is printed on the screen. After the script is finished running and the prompt is shown, go back to the first terminal, where gem5 is running, and press Ctrl-C. This will save a checkpoint in the 'm5out' directory.
+The script assigns different bins to each Cgroups' partition, and the result is printed on the screen. After the script is finished and prompt is shown, go back to the first terminal, where gem5 is running, and press Ctrl-C. This will save a checkpoint in the 'm5out' directory.
 
 ### Running the Simulations
 
@@ -75,9 +75,9 @@ Use the following command to run the simulations in Figure 8:
 cd gem5
 ./run-fig8-rt-effect.sh m5out/cpt.*
 ```
-This script launches 48 simulations in parallel and saves the result in 'detmem/results/fig8-rt-effect'. It takes about 12 hours to finish this run on a machine with 48 hardware threads.
+This script launches 48 simulations in parallel and saves the result in 'detmem/results/fig8-rt-effect'. It takes about 12 hours to finish this run on a machine with 48 hardware threads. Each gem5 instance needs about 250MB memory. As we launch 48 threads, this run needs about 12GB memory. 
 
-To run the simulations in Figure 9 and 10.a, use the the following commands:
+To run the simulations in figures 9 and 10.a, use the the following commands:
 ```
 ./run-fig9-be-effect.sh m5out/cpt.*
 ```
@@ -98,7 +98,7 @@ sudo apt-get install r-base
  cd parsing_scripts
  ./gen-fig-all
  ```
- The figures will be saved in 'detmem/results/figs'.
+The figures will be saved in 'detmem/results/figs'.
  
-You can also generate the figures for each run separately by executing the scripts 'gen-fig8.sh', 'gen-fig9.sh', or 'gen-fig10a.sh'.
+Alternatively, you can generate the figures for each run separately by executing the scripts 'gen-fig8.sh', 'gen-fig9.sh', or 'gen-fig10a.sh'.
  
