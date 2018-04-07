@@ -47,34 +47,58 @@ make ARCH=arm CROSS_COMPILE=arm-linux-gnueabihf- -jN
 ```
 ___
 
-## Running the Simulations
+## Simulations
 ### Boot the OS and Create a Checkpoint
 
 Use the command below to run gem5 and boot Linux:
-
 ```
-./build/ARM/gem5.opt -d m5out configs/example/fs.py --disk-image=[absolute/path/to/full_system_images/disks/linux-arm-ael.img] --num-cpus=4 --caches --l2cache --mem-size=2048MB --kernel=[absolute/path/to/gem5-linux/vmlinux] --machine-type=VExpress_EMM --dtb-file=[absolute/path/to/gem5-linux/arch/arm/boot/dts/vexpress-v2p-ca15-tc1-gem5_4cpus.dtb] --mem-type=lpddr2_s4_1066_x32 --checkpoint-at-end
+cd gem5
+./gen-checkpoint.sh
 ```
 
-Open another terminal window and run the command below. 'm5term' connects to the gem5 and serves as a console for the simulated system. 
+Open another terminal window and run the command below. 'm5term' connects to gem5 and serves as a console for the simulated platform. 
 ```
 ./util/term/m5term [port number]
 ```
-The port number is printed on the screen by gem5 when it starts running. It is usually 3456.
+The port number is printed on the screen where gem5 is running. It is usually 3456.
 
-When the boot procedure is finished and the system asks for the password, type 'root' and press enter. Then, enter the command below to enable DM-aware PALLOC:
+When the boot procedure is finished and the system asks for the password, type 'root' and press enter. Then, enter the command below to enable PALLOC:
 ```
 ./palloc-gen-bal.sh
 ```
-The script assigns different bins to each Cgroups' partition and the result is printed on the screen. After the script is finished and the prompt is shown, go back to the terminal where gem5 is running and press Ctrl-C. This will save a checkpoint in the 'm5out' directory.
+The script assigns different bins to each Cgroups' partition, and the result is printed on the screen. After the script is finished running and the prompt is shown, go back to the first terminal, where gem5 is running, and press Ctrl-C. This will save a checkpoint in the 'm5out' directory.
 
-### Batch Run
+### Running the Simulations
 
-We use the shell script "sv-rtas.sh" to launch multiple simulation jobs. The simulation jobs to be launched are listed in the variable "arr". The names of the jobs and their associated shell command (which will be executed in the guest system shell) can be found in the Python script:
+Use the following command to run the simulations in Figure 8:
 ```
-./configs/spec2006/spec_fs.py
+cd gem5
+./run-fig8-rt-effect.sh m5out/cpt.*
 ```
-To launch the jobs we simply run this command:
+This script launches 48 simulations in parallel and saves the result in 'detmem/results/fig8-rt-effect'. It takes about 12 hours to finish this run on a machine with 48 hardware threads.
+
+To run the simulations in Figure 9 and 10.a, use the the following commands:
 ```
-./sv-rtas.sh
+./run-fig9-be-effect.sh m5out/cpt.*
 ```
+```
+./run-fig10a-dram-ctrl.sh m5out/cpt.*
+```
+These runs should take about 24 and 12 hours to finish, respectively. The results will be saved in 'detmem/results/fig9-be-effect' and 'detmem/results/fig10a-dram-ctrl'.
+___
+
+## Generating the Figures
+
+Install R on your system:
+```
+sudo apt-get install r-base
+```
+ After all of the runs are finished, use this command to generate the figures:
+ ```
+ cd parsing_scripts
+ ./gen-fig-all
+ ```
+ The figures will be saved in 'detmem/results/figs'.
+ 
+You can also generate the figures for each run separately by executing the scripts 'gen-fig8.sh', 'gen-fig9.sh', or 'gen-fig10a.sh'.
+ 
