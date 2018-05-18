@@ -85,6 +85,8 @@ To run the simulations in figures 9 and 10.a, use the the following commands:
 ./run-fig10a-dram-ctrl.sh m5out/cpt.*
 ```
 These runs should take about 24 and 12 hours to finish, respectively. The results will be saved in 'detmem/results/fig9-be-effect' and 'detmem/results/fig10a-dram-ctrl'.
+
+WARNING: Only launch one run at a time and wait for the simulations in the run to finish or else some simulations will terminate unsuccessfully and give an error about not finding a free TCP port to open.
 ___
 
 ## Generating the Figures
