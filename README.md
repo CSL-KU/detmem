@@ -1,5 +1,5 @@
 # Deterministic Memory
-Linux kernel and gem5 source for Deterministic Memory described in this paper:
+Linux kernel and gem5 source code for Deterministic Memory described in this paper:
 
 Farzad Farshchi, Prathap Kumar Valsan, Renato Mancuso, and Heechul Yun, **"Deterministic Memory Abstraction and Supporting Multicore System Architecture"**, Euromicro Conference on Real-Time Systems (ECRTS), 2018.
 
