@@ -1,5 +1,9 @@
 # Deterministic Memory
-Linux Kernel and gem5 modified source for Deterministic Memory
+Linux kernel and gem5 source for Deterministic Memory described in this paper:
+
+Farzad Farshchi, Prathap Kumar Valsan, Renato Mancuso, and Heechul Yun, **"Deterministic Memory Abstraction and Supporting Multicore System Architecture"**, Euromicro Conference on Real-Time Systems (ECRTS), 2018.
+
+[Paper PDF](http://www.ittc.ku.edu/~farshchi/papers/detmem-ecrts18-slides.pdf) | [arXiv](https://arxiv.org/abs/1707.05260) | [Presentation Slides](http://www.ittc.ku.edu/~farshchi/papers/detmem-ecrts18-slides.pdf)
 
 ## Clone the Repository
 ```
