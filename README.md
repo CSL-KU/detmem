@@ -3,7 +3,9 @@ Linux kernel and gem5 source code for Deterministic Memory described in this pap
 
 Farzad Farshchi, Prathap Kumar Valsan, Renato Mancuso, and Heechul Yun, **"Deterministic Memory Abstraction and Supporting Multicore System Architecture"**, Euromicro Conference on Real-Time Systems (ECRTS), 2018.
 
-[Paper PDF](http://www.ittc.ku.edu/~farshchi/papers/detmem-ecrts18-slides.pdf) | [arXiv](https://arxiv.org/abs/1707.05260) | [Presentation slides](http://www.ittc.ku.edu/~farshchi/papers/detmem-ecrts18-slides.pdf)
+[Paper PDF](http://drops.dagstuhl.de/opus/volltexte/2018/9001/pdf/LIPIcs-ECRTS-2018-1.pdf)
+| [arXiv](https://arxiv.org/abs/1707.05260)
+| [Presentation slides](http://www.ittc.ku.edu/~farshchi/papers/detmem-ecrts18-slides.pdf)
 
 ## Clone the Repository
 ```
